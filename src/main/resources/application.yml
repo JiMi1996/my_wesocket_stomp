@@ -1,0 +1,18 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+#    publisher-confirms: true    #  消息发送到交换机确认机制,是否确认回调
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    pool:
+      max-wait: -1
+      min-idle: 0
+      max-idle: 8
+      max-active:
+server:
+  port: 83
+

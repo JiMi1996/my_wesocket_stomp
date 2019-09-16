@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+    <script src="jquery.js"></script>
+    <!-- stomp协议的客户端脚本 -->
+    <script src="stomp.js"></script>
+    <!-- SockJS的客户端脚本 -->
+    <script src="sockjs.js"></script>
+
+    <script type="text/javascript">
+        let stompClient = null;
+        connect(12);
+        function connect(id) {
+            let socket = new SockJS("https://szapi.chinawike.com/websocket");
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, function(frame) {
+                console.log('Connected: ' + frame);
+                stompClient.subscribe('/topic/greetings'+id, function(greeting){
+                    console.log(JSON.parse(greeting.body));
+                });
+            });
+    }
+
+    </script>
+</html>
